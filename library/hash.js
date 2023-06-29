@@ -1,22 +1,22 @@
-const argon2 = require("argon2");
+const argon2 = require('argon2')
 
-function hashPassword(password) {
+function hashPassword (password) {
   try {
-    return argon2.hash(password);
+    return argon2.hash(password)
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
-function verifyPassword(hash, password) {
+function verifyPassword (hash, password) {
   try {
-    return argon2.verify(hash, password);
+    return argon2.verify(hash, password)
   } catch (err) {
-    console.log(err);
+    console.log(err)
   }
 }
 
 module.exports = {
   hashPassword,
-  verifyPassword,
-};
+  verifyPassword
+}

@@ -1,4 +1,4 @@
-const { buildSchema } = require("graphql");
+const { buildSchema } = require('graphql')
 
 const schema = buildSchema(`
     type User {
@@ -16,6 +16,6 @@ const schema = buildSchema(`
     type Query {
       getUser(id: ID!): User
     }
-`);
+`)
 
-module.exports = schema;
+module.exports = schema
