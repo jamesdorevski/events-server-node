@@ -13,8 +13,8 @@ class User {
 
 var root = {
   createUser: ({ username, password }) => {
-    const hash = hash.hashPassword(password);
-    const id = createUserDB.createUser(username, hash);
+    const pwdHashed = hash.hashPassword(password);
+    const id = createUserDB.createUser(username, pwdHashed);
 
     return new User(id, username);
   },
