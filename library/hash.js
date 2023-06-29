@@ -1,4 +1,4 @@
-const argon2 = require('argon2');
+const argon2 = require("argon2");
 
 function hashPassword(password) {
   try {
@@ -17,6 +17,6 @@ function verifyPassword(hash, password) {
 }
 
 module.exports = {
-    hashPassword,
-    verifyPassword
-}
+  hashPassword,
+  verifyPassword,
+};
