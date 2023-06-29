@@ -20,8 +20,4 @@ app.use(
 
 app.use(jwt)
 
-app.on('error', (err) => {
-  log.error('server error', err)
-})
-
 app.listen(8080)

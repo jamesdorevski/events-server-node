@@ -1,11 +1,11 @@
-const { GraphQlObjectType } = require('graphql')
+const { GraphQLObjectType } = require('graphql')
 const CreateUserInputType = require('../inputs/createUserInputType')
 const UserType = require('../types/user')
 const hash = require('../../library/hash')
 const createUserDB = require('../../repository/createUser')
 const jwt = require('koa-jwt')
 
-const MutationType = new GraphQlObjectType({
+const MutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
     createUser: {
