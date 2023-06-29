@@ -12,11 +12,11 @@ class User {
 }
 
 const root = {
-  createUser: ({ username, password }) => {
-    const pwdHashed = hash.hashPassword(password)
-    const id = createUserDB.createUser(username, pwdHashed)
+  createUser: ({ input }) => {
+    const pwdHashed = hash.hashPassword(input.password)
+    const id = createUserDB.createUser(input.username, pwdHashed)
 
-    return new User(id, username)
+    return new User(id, input.username)
   }
 }
 

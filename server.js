@@ -3,6 +3,7 @@ const mount = require('koa-mount')
 const schema = require('./graphql/schema')
 const { graphqlHTTP } = require('koa-graphql')
 const root = require('./api/root')
+const jwt = require('./middleware/jwt')
 
 const app = new Koa()
 
@@ -16,6 +17,8 @@ app.use(
     })
   )
 )
+
+app.use(jwt)
 
 app.on('error', (err) => {
   log.error('server error', err)
