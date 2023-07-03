@@ -1,2 +1,8 @@
 import { makeExecutableSchema } from "@graphql-tools/schema";
-import typeDefs from "./schema.graphql";
+import { mergedTypeDefs } from "./types/index";
+import { mergedResolvers } from "./resolvers/index";
+
+export const schema = makeExecutableSchema({
+    typeDefs: mergedTypeDefs,
+    resolvers: mergedResolvers,
+});

@@ -1,8 +1,8 @@
 import { mergeResolvers } from "@graphql-tools/merge";
 import { authenticationResolver } from "./authenticationResolver";
 
-export const resolvers = [
+const resolvers = [
     authenticationResolver
 ];
 
-export const merged = mergeResolvers(resolvers);
+export const mergedResolvers = mergeResolvers(resolvers);
