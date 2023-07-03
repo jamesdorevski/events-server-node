@@ -1,6 +1,7 @@
 import { hash } from "bcryptjs";
 import { sign} from "jsonwebtoken";
 import { GraphQLContext } from "../context";
+import { authConfig } from "../../auth";
 import "dotenv/config";
 
 export const authenticationResolver = {
@@ -17,7 +18,7 @@ export const authenticationResolver = {
             const newUser = await context.prisma.user.create({
                 data: { ...args, password },
             });
-            const token = sign({ userId: newUser.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+            const token = sign({ userId: newUser.id }, authConfig.JwtSecret, { expiresIn: "1h" });
 
             return {
                 token,
