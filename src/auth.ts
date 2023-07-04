@@ -5,6 +5,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
+// TOOD: validate that these values are not null
 export const authConfig = {
     JwtSecret: process.env.JWT_SECRET as string,
 };
