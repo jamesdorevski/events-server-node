@@ -17,7 +17,7 @@ async function main() {
                 query: req.query,
                 body: req.body
             };
-
+            
             if (shouldRenderGraphiQL(request)) {
                 resp.header("Content-Type", "text/html");
                 resp.send(
@@ -44,7 +44,7 @@ async function main() {
         }
     });
 
-    server.listen(8080, "0.0.0.0", () => {
+    server.listen({ port: 8080, host: "0.0.0.0"}, () => {
         console.log("Server is running on http://localhost:8080/");
     });
 }

@@ -25,6 +25,10 @@ export const userResolver = {
             },
             context: GraphQLContext
         ) => {
+            if (!context.authenticatedClient) {
+                throw new Error("Identify yourself!");
+            }
+
             const password = await hash(args.password, 10);
             const newUser = await context.prisma.user.create({
                 data: { ...args, password },
