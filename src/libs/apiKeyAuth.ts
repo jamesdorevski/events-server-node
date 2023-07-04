@@ -5,5 +5,6 @@ export function apiKeyAuth(req: FastifyRequest): boolean {
         return false;
     }
 
+    // TODO: generate keys 
     return req.headers["x-api-key"] === "hi";
 }

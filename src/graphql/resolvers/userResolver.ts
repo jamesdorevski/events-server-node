@@ -1,13 +1,13 @@
 import { hash, compare } from "bcryptjs";
 import { sign} from "jsonwebtoken";
 import { GraphQLContext } from "../context";
-import { authConfig } from "../../auth";
+import { authConfig } from "../../libs/auth";
 
 export const userResolver = {
     Query: {
         me: (
             parent: unknown,
-            args: {},
+            args: object,
             context: GraphQLContext
         ) => {
             if (context.currUser === null) {

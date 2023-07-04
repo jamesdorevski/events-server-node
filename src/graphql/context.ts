@@ -1,7 +1,7 @@
 import { FastifyRequest } from "fastify";
 import { PrismaClient, User } from "@prisma/client";
-import { auth } from "../auth";
-import { apiKeyAuth } from "../apiKeyAuth";
+import { auth } from "../libs/auth";
+import { apiKeyAuth } from "../libs/apiKeyAuth";
 
 const prisma = new PrismaClient();
 
