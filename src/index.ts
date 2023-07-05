@@ -3,9 +3,27 @@ import { Request, shouldRenderGraphiQL, getGraphQLParameters, processRequest, se
 import { schema } from "./graphql/schema";
 import fastify from "fastify";
 import { contextFactory } from "./graphql/context";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 async function main() {
-    const server = fastify();
+
+    const envToLogger = {
+        development: {
+            transport: {
+                target: "pino-pretty",
+                options: {
+                    translateTime: "HH:MM:ss Z",
+                    ignore: "pid, hostname",
+                },
+            },
+        },
+    };
+
+    const server = fastify({
+        logger: envToLogger["development"] ?? true,
+    });
 
     server.route({
         method: ["POST", "GET"],
@@ -30,6 +48,13 @@ async function main() {
             }
 
             const { operationName, query, variables } = getGraphQLParameters(request);
+            
+            req.log.info({
+                operationName: operationName,
+                query: query,
+                headers: req.headers,
+                variables: variables,
+            }, "Received GraphQL request");
 
             const result = await processRequest({
                 request,
@@ -39,6 +64,13 @@ async function main() {
                 query,
                 variables,
             });
+
+            if (result.type === "RESPONSE") {
+                req.log.info({
+                    data: result.payload.data,
+                    errors: result.payload.errors,
+                }, "Sending GraphQL response");   
+            }
 
             sendResult(result, resp.raw);
         }
